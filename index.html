@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITYMOBILE - Best Mobile Deals in Kelambakkam</title>
+    <meta name="description" content="CITYMOBILE in Kelambakkam offers the best deals on mobile phones, accessories, and repair services.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="images/CITY MOBILE LOGO.png" alt="CITYMOBILE Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-text" style="display: none;">CITYMOBILE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#offers">Offers</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Welcome to <span class="highlight">CITYMOBILE</span></h1>
+                <p class="tagline">Best Mobile Deals in Kelambakkam</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">Shop Now</a>
+                    <a href="#offers" class="btn btn-secondary">Today's Deals 🔥</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero.png" alt="Latest Mobile Phones" onerror="this.src='https://via.placeholder.com/600x400/1a1a1a/FF2D2D?text=Latest+Smartphones'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products section">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            
+            <div class="brand-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="samsung">Samsung</button>
+                <button class="filter-btn" data-filter="vivo">Vivo</button>
+                <button class="filter-btn" data-filter="redmi">Redmi</button>
+                <button class="filter-btn" data-filter="realme">Realme</button>
+                <button class="filter-btn" data-filter="accessories">Accessories</button>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-brand="samsung">
+                    <div class="product-badge">Offer</div>
+                    <img src="images/product_1.png" alt="Samsung Galaxy S24" class="product-img" onerror="this.src='https://via.placeholder.com/300x400/222/FF2D2D?text=Samsung+Phone'">
+                    <div class="product-info">
+                        <h3>Samsung Galaxy S24</h3>
+                        <p class="price">₹65,999</p>
+                        <ul class="features">
+                            <li><i class="fas fa-memory"></i> 8GB RAM | 256GB ROM</li>
+                            <li><i class="fas fa-camera"></i> 50MP + 12MP + 10MP</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block whatsapp-order" data-product="Samsung Galaxy S24" data-price="₹65,999">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card" data-brand="vivo">
+                    <div class="product-badge">Best Seller</div>
+                    <img src="images/product_1.png" alt="Vivo V30" class="product-img" onerror="this.src='https://via.placeholder.com/300x400/222/FF2D2D?text=Vivo+Phone'">
+                    <div class="product-info">
+                        <h3>Vivo V30 Pro</h3>
+                        <p class="price">₹41,999</p>
+                        <ul class="features">
+                            <li><i class="fas fa-memory"></i> 12GB RAM | 512GB ROM</li>
+                            <li><i class="fas fa-camera"></i> 50MP Triple Camera</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block whatsapp-order" data-product="Vivo V30 Pro" data-price="₹41,999">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card" data-brand="redmi">
+                    <img src="images/product_1.png" alt="Redmi Note 13" class="product-img" onerror="this.src='https://via.placeholder.com/300x400/222/FF2D2D?text=Redmi+Phone'">
+                    <div class="product-info">
+                        <h3>Redmi Note 13 Pro</h3>
+                        <p class="price">₹25,999</p>
+                        <ul class="features">
+                            <li><i class="fas fa-memory"></i> 8GB RAM | 256GB ROM</li>
+                            <li><i class="fas fa-camera"></i> 200MP Main Camera</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block whatsapp-order" data-product="Redmi Note 13 Pro" data-price="₹25,999">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card" data-brand="realme">
+                    <div class="product-badge">New</div>
+                    <img src="images/product_1.png" alt="Realme 12 Pro" class="product-img" onerror="this.src='https://via.placeholder.com/300x400/222/FF2D2D?text=Realme+Phone'">
+                    <div class="product-info">
+                        <h3>Realme 12 Pro+</h3>
+                        <p class="price">₹29,999</p>
+                        <ul class="features">
+                            <li><i class="fas fa-memory"></i> 8GB RAM | 256GB ROM</li>
+                            <li><i class="fas fa-camera"></i> 64MP Periscope</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block whatsapp-order" data-product="Realme 12 Pro+" data-price="₹29,999">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers & Deals Section -->
+    <section id="offers" class="offers section dark-bg">
+        <div class="container">
+            <h2 class="section-title">Exciting Offers</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <i class="fas fa-gift offer-icon"></i>
+                    <h3>Festival Offers</h3>
+                    <p>Special discounts on selected models this festive season.</p>
+                </div>
+                <div class="offer-card">
+                    <i class="fas fa-exchange-alt offer-icon"></i>
+                    <h3>Exchange Offers</h3>
+                    <p>Upgrade your old phone and get the best exchange value.</p>
+                </div>
+                <div class="offer-card">
+                    <i class="fas fa-credit-card offer-icon"></i>
+                    <h3>Easy EMI Options</h3>
+                    <p>0% Interest EMI available on Bajaj Finserv and major credit cards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-tools service-icon"></i>
+                    <h3>Mobile Repair</h3>
+                    <p>Expert hardware repair for all brands.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-mobile-alt service-icon"></i>
+                    <h3>Screen Replacement</h3>
+                    <p>Quick and genuine screen replacements.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3>Software Update</h3>
+                    <p>OS updates, flashing, and software troubleshooting.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-headphones service-icon"></i>
+                    <h3>Accessories Sales</h3>
+                    <p>Cases, chargers, tempered glass, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section dark-bg">
+        <div class="container">
+            <h2 class="section-title">Our Store</h2>
+            <div class="gallery-grid">
+                <img src="images/gallery_1.png" alt="Shop Interior" class="gallery-img" onerror="this.src='https://via.placeholder.com/400x300/222/FF2D2D?text=Store+Interior'">
+                <img src="https://via.placeholder.com/400x300/1a1a1a/FF2D2D?text=Latest+Arrivals" alt="Latest Arrivals" class="gallery-img">
+                <img src="https://via.placeholder.com/400x300/222/FF2D2D?text=Happy+Customers" alt="Happy Customers" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Business Info Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>CITYMOBILE, Kelambakkam, Chennai, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9962919929</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Mon - Sat: 10:00 AM - 9:30 PM<br>Sun: 10:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <!-- Placeholder map iframe for Kelambakkam -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31114.611130835153!2d80.19890983699708!3d12.793739709214717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52504938ebdd57%3A0xc6fb6c0850df8870!2sKelambakkam%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1714496739958!5m2!1sen!2sin" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>CITYMOBILE</h2>
+                    <p>Your trusted mobile partner in Kelambakkam.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#warranty">Warranty Info</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CITYMOBILE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Quick Action Buttons (Mobile) -->
+    <div class="sticky-actions">
+        <a href="tel:+919962919929" class="action-btn call-btn">
+            <i class="fas fa-phone-alt"></i> Call
+        </a>
+        <a href="https://wa.me/919962919929" class="action-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://maps.google.com/?q=Kelambakkam" class="action-btn location-btn" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> Location
+        </a>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
