@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung Galaxy S24 Ultra - CITYMOBILE</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .product-page { padding-top: 120px; padding-bottom: 60px; }
+        .product-container { display: flex; gap: 50px; flex-wrap: wrap; }
+        .product-gallery { flex: 1; min-width: 300px; position: sticky; top: 120px; height: fit-content; }
+        .product-details-content { flex: 1.5; min-width: 300px; }
+        
+        .main-image-container { position: relative; width: 100%; height: 500px; background: var(--bg-card); border-radius: 20px; border: 1px solid var(--border-color); margin-bottom: 20px; overflow: hidden; transform-style: preserve-3d; will-change: transform; cursor: crosshair; transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+        .main-image-container:hover { box-shadow: var(--neon-glow); border-color: rgba(255, 45, 45, 0.3); }
+        .main-image { width: 100%; height: 100%; object-fit: contain; padding: 30px; }
+        
+        .thumbnail-list { display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-start; }
+        @media(max-width: 768px) {
+            .thumbnail-list { justify-content: center; }
+        }
+        .thumbnail { width: 80px; height: 80px; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid transparent; transition: var(--transition); background: var(--bg-card); }
+        .thumbnail:hover, .thumbnail.active { border-color: var(--accent-color); transform: translateY(-3px); }
+        
+        .product-title { font-family: var(--font-hero); font-size: 2.5rem; margin-bottom: 10px; }
+        .product-price { font-family: var(--font-hero); font-size: 2rem; color: var(--accent-color); margin: 20px 0; text-shadow: var(--neon-glow); font-weight: 700; }
+        .product-price del { color: var(--text-muted); font-size: 1.2rem; margin-left: 15px; text-shadow: none; font-weight: normal; }
+        
+        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
+        .spec-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid var(--border-color); }
+        .spec-item i { color: var(--accent-color); font-size: 1.5rem; margin-bottom: 10px; text-shadow: var(--neon-glow); }
+        
+        .color-options { display: flex; gap: 15px; margin: 20px 0; }
+        .color-btn { width: 40px; height: 40px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: var(--transition); }
+        .color-btn.active { border-color: var(--text-main); transform: scale(1.1); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        .action-buttons { display: flex; gap: 20px; margin-top: 40px; }
+        .action-buttons .btn { flex: 1; font-size: 1.1rem; padding: 15px 0; }
+        
+        .sticky-buy { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(5,5,5,0.95); padding: 15px 20px; z-index: 100; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); backdrop-filter: blur(10px); transform: translateY(100%); transition: transform 0.3s; }
+        .sticky-buy.visible { transform: translateY(0); }
+        
+        @media(max-width: 768px) {
+            .product-container { flex-direction: column; }
+            .product-gallery { position: relative; top: 0; }
+            .main-image-container { height: 350px; }
+            .action-buttons { flex-direction: column; }
+            .sticky-buy { display: none; /* Let mobile-bottom-nav handle it or keep it above */ }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/CITY MOBILE LOGO.png" alt="CITYMOBILE Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-text" style="display: none;">CITY<span>MOBILE</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#deals">Deals</a></li>
+                <li><a href="index.html#products" class="active">Mobiles</a></li>
+                <li><a href="index.html#accessories">Accessories</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Details Section -->
+    <section class="product-page">
+        <div class="container">
+            <div class="product-container">
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-container" id="mainImageContainer">
+                        <img src="images/galaxy_s24_ultra.png" alt="Product Image" class="main-image" id="mainImage" fetchpriority="high">
+                    </div>
+                    <div class="thumbnail-list" id="thumbnailList">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div class="product-details-content">
+                    <div id="brandLabel" style="color: var(--accent-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; font-family: var(--font-heading);">Samsung</div>
+                    <h1 class="product-title" id="productTitle">Galaxy S24 Ultra</h1>
+                    
+                    <div class="rating" style="color: #FFD700; margin-bottom: 15px; font-size: 1.1rem;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span id="reviewCount" style="color: var(--text-muted); font-size: 0.9rem; margin-left: 10px; font-family: var(--font-main);">(128 Reviews)</span>
+                    </div>
+
+                    <div class="product-price" id="productPrice">₹1,29,999 <del id="productOriginalPrice">₹1,34,999</del></div>
+                    
+                    <p id="productDescription" style="color: var(--text-muted); margin-bottom: 20px;">Experience the new era of mobile AI. The Galaxy S24 Ultra features a titanium exterior, a stunning flat display, and incredible 200MP camera capabilities, all powered by the most advanced Snapdragon processor.</p>
+
+                    <!-- Key Specs -->
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <i class="fas fa-microchip"></i>
+                            <div id="specCpu">Snapdragon 8 Gen 3</div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-memory"></i>
+                            <div id="specMemory">12GB RAM, 256GB</div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-battery-full"></i>
+                            <div id="specBattery">5000 mAh Battery</div>
+                        </div>
+                        <div class="spec-item">
+                            <i class="fas fa-camera"></i>
+                            <div id="specCamera">200MP + 50MP + 12MP</div>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div style="margin-top: 30px;">
+                        <h4 style="margin-bottom: 10px; font-family: var(--font-heading);">Available Colors</h4>
+                        <div class="color-options" id="colorOptionsContainer">
+                            <!-- Loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                        <ul id="highlightsList" style="color: var(--text-muted); font-size: 0.9rem;">
+                            <!-- Loaded dynamically -->
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <a href="https://wa.me/919962919929" target="_blank" class="btn btn-primary" id="whatsappBuyBtn" style="background: #25D366; box-shadow: 0 4px 15px rgba(37,211,102,0.4); border:none;"><i class="fab fa-whatsapp"></i> Buy via WhatsApp</a>
+                        <a href="tel:919962919929" class="btn btn-secondary"><i class="fas fa-phone-alt"></i> Call Store</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2 class="logo-text">CITY<span style="color:var(--accent-color); text-shadow:var(--neon-glow);">MOBILE</span></h2>
+                    <p>Kelambakkam's trusted destination for premium smartphones and accessories.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#deals">Today's Deals</a></li>
+                        <li><a href="index.html#products">Mobiles</a></li>
+                        <li><a href="index.html#accessories">Accessories</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="index.html#deals">EMI Finance</a></li>
+                        <li><a href="index.html#services">Repair Services</a></li>
+                        <li><a href="index.html#contact">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CITYMOBILE. Built with futuristic vision. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Bottom Bar -->
+    <div class="sticky-buy" id="stickyBuy">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <img src="images/galaxy_s24_ultra.png" alt="Phone" id="stickyImg" style="width: 40px; height: 40px; object-fit: contain;" loading="lazy">
+            <div>
+                <div style="font-weight: bold; font-family: var(--font-heading);" id="stickyTitle">Galaxy S24 Ultra</div>
+                <div style="color: var(--accent-color); font-weight: bold;" id="stickyPrice">₹1,29,999</div>
+            </div>
+        </div>
+        <a href="https://wa.me/919962919929" id="stickyBuyBtn" target="_blank" class="btn btn-primary" style="padding: 10px 20px; background: #25D366; box-shadow: 0 0 10px rgba(37,211,102,0.4);"><i class="fab fa-whatsapp"></i> Buy Now</a>
+    </div>
+
+    <!-- Mobile Bottom Navigation (Matching Index) -->
+    <div class="mobile-bottom-nav">
+        <div class="mobile-nav-container">
+            <a href="tel:+919962919929" class="mobile-nav-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>Call Now</span>
+            </a>
+            <a href="https://wa.me/919962919929" class="mobile-nav-item whatsapp-action" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="https://maps.google.com/?q=Kelambakkam" class="mobile-nav-item" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Location</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Scripts -->
+    <script>
+        const productsData = {
+            'samsung-s24': {
+                brand: "Samsung",
+                title: "Galaxy S24 Ultra",
+                price: "₹1,29,999",
+                originalPrice: "₹1,34,999",
+                description: "Experience the new era of mobile AI. The Galaxy S24 Ultra features a titanium exterior, a stunning flat display, and incredible 200MP camera capabilities, all powered by the most advanced Snapdragon processor.",
+                cpu: "Snapdragon 8 Gen 3",
+                memory: "12GB RAM, 256GB",
+                battery: "5000 mAh Battery",
+                camera: "200MP + 50MP + 12MP",
+                image: "images/galaxy_s24_ultra.png",
+                colors: [
+                    { name: "Titanium Black", code: "#2C2C2C", hue: 0, brightness: 1 },
+                    { name: "Titanium Gray", code: "#A0A0A0", hue: 120, brightness: 1.1 },
+                    { name: "Titanium Yellow", code: "#D9C3A0", hue: 45, brightness: 1.05 }
+                ],
+                rating: 4.8,
+                reviews: 128,
+                highlights: [
+                    "1 Year Manufacturer Warranty",
+                    "7 Days Replacement Policy",
+                    "No Cost EMI available from ₹10,833/month"
+                ]
+            },
+            'vivo-x100': {
+                brand: "Vivo",
+                title: "Vivo X100 Pro",
+                price: "₹89,999",
+                originalPrice: "₹96,999",
+                description: "Capture professional-grade images with the co-engineered Zeiss camera system. Powered by the Dimensity 9300 chipset and boasting a beautiful curved AMOLED display, it sets new standards in mobile photography.",
+                cpu: "MediaTek Dimensity 9300",
+                memory: "16GB RAM, 512GB",
+                battery: "5400 mAh Battery",
+                camera: "50MP Main + 50MP Telephoto",
+                image: "images/vivo_x100_pro.png",
+                colors: [
+                    { name: "Asteroid Black", code: "#1C1C1C", hue: 0, brightness: 1 },
+                    { name: "Startrail Blue", code: "#2E5D78", hue: 200, brightness: 1.1 }
+                ],
+                rating: 4.6,
+                reviews: 94,
+                highlights: [
+                    "1 Year Manufacturer Warranty",
+                    "7 Days Replacement Policy",
+                    "No Cost EMI available from ₹7,500/month"
+                ]
+            },
+            'redmi-note13': {
+                brand: "Redmi",
+                title: "Redmi Note 13 Pro+",
+                price: "₹31,999",
+                originalPrice: "₹35,999",
+                description: "Unmatched performance at an incredible value. The Redmi Note 13 Pro+ is equipped with a 200MP camera, 120W HyperCharge, IP68 water resistance, and a gorgeous 1.5K curved AMOLED screen.",
+                cpu: "Dimensity 7200 Ultra",
+                memory: "12GB RAM, 256GB",
+                battery: "5000 mAh Battery",
+                camera: "200MP OIS + 8MP + 2MP",
+                image: "images/redmi_note_13_pro_plus.png",
+                colors: [
+                    { name: "Midnight Black", code: "#121212", hue: 0, brightness: 1 },
+                    { name: "Moonlight White", code: "#F0F0F0", hue: 180, brightness: 1.2 },
+                    { name: "Aurora Purple", code: "#C5B2DF", hue: 280, brightness: 1.1 }
+                ],
+                rating: 4.5,
+                reviews: 215,
+                highlights: [
+                    "1 Year Manufacturer Warranty",
+                    "7 Days Replacement Policy",
+                    "No Cost EMI available from ₹2,666/month"
+                ]
+            },
+            'realme-12': {
+                brand: "Realme",
+                title: "Realme 12 Pro+",
+                price: "₹29,999",
+                originalPrice: "₹33,999",
+                description: "Designed in collaboration with luxury watch designers, the Realme 12 Pro+ features a premium vegan leather back and a flagship 64MP periscope portrait camera with 120x zoom capabilities.",
+                cpu: "Snapdragon 7s Gen 2",
+                memory: "8GB RAM, 256GB",
+                battery: "5000 mAh Battery",
+                camera: "64MP Zoom + 50MP Main",
+                image: "images/realme_12_pro_plus.png",
+                colors: [
+                    { name: "Submarine Blue", code: "#1C2E4A", hue: 0, brightness: 1 },
+                    { name: "Navigator Beige", code: "#E1D5C1", hue: 35, brightness: 1.1 }
+                ],
+                rating: 4.7,
+                reviews: 146,
+                highlights: [
+                    "1 Year Manufacturer Warranty",
+                    "7 Days Replacement Policy",
+                    "No Cost EMI available from ₹2,500/month"
+                ]
+            },
+            'iphone-15': {
+                brand: "Apple",
+                title: "iPhone 15 Pro",
+                price: "₹1,49,999",
+                originalPrice: "₹1,59,999",
+                description: "Forged in titanium and featuring the groundbreaking A17 Pro chip, a customizable Action button, and a powerful Pro camera system with 7 pro lenses, the iPhone 15 Pro represents the pinnacle of Apple technology.",
+                cpu: "A17 Pro Chip",
+                memory: "8GB RAM, 256GB",
+                battery: "3274 mAh Battery",
+                camera: "48MP + 12MP + 12MP",
+                image: "images/iphone_15_pro.png",
+                colors: [
+                    { name: "Natural Titanium", code: "#8F8B83", hue: 0, brightness: 1 },
+                    { name: "Black Titanium", code: "#282829", hue: 190, brightness: 0.75 },
+                    { name: "White Titanium", code: "#E2E2E4", hue: 180, brightness: 1.25 }
+                ],
+                rating: 4.9,
+                reviews: 382,
+                highlights: [
+                    "1 Year Apple India Warranty",
+                    "7 Days Replacement Policy",
+                    "No Cost EMI available from ₹12,500/month"
+                ]
+            }
+        };
+
+        // Get query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let productId = urlParams.get('id') || 'samsung-s24';
+        if (!productsData[productId]) {
+            productId = 'samsung-s24';
+        }
+
+        const product = productsData[productId];
+
+        // Populate elements
+        document.getElementById('brandLabel').innerText = product.brand;
+        document.getElementById('productTitle').innerText = product.title;
+        document.title = `${product.brand} ${product.title} - CITYMOBILE`;
+        document.getElementById('reviewCount').innerText = `(${product.reviews} Reviews)`;
+        
+        // Price formatting
+        const priceContainer = document.getElementById('productPrice');
+        priceContainer.innerHTML = `${product.price} <del id="productOriginalPrice">${product.originalPrice}</del>`;
+        
+        document.getElementById('productDescription').innerText = product.description;
+        document.getElementById('specCpu').innerText = product.cpu;
+        document.getElementById('specMemory').innerText = product.memory;
+        document.getElementById('specBattery').innerText = product.battery;
+        document.getElementById('specCamera').innerText = product.camera;
+
+        // Image Setup
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = product.image;
+        mainImage.alt = `${product.brand} ${product.title}`;
+
+        // Sticky Bar Setup
+        document.getElementById('stickyImg').src = product.image;
+        document.getElementById('stickyImg').alt = product.title;
+        document.getElementById('stickyTitle').innerText = product.title;
+        document.getElementById('stickyPrice').innerText = product.price;
+
+        // WhatsApp action links setup
+        const whatsappBase = "https://wa.me/919962919929";
+        const orderMessage = `Hello CITYMOBILE! I am interested in purchasing the *${product.brand} ${product.title}* priced at *${product.price}*. Is it currently available?`;
+        const encodedMessage = encodeURIComponent(orderMessage);
+        
+        document.getElementById('whatsappBuyBtn').href = `${whatsappBase}?text=${encodedMessage}`;
+        document.getElementById('stickyBuyBtn').href = `${whatsappBase}?text=${encodedMessage}`;
+
+        // Color selection rendering
+        const colorsContainer = document.getElementById('colorOptionsContainer');
+        colorsContainer.innerHTML = '';
+        product.colors.forEach((color, index) => {
+            const btn = document.createElement('button');
+            btn.className = `color-btn ${index === 0 ? 'active' : ''}`;
+            btn.style.backgroundColor = color.code;
+            btn.title = color.name;
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Also trigger thumbnail selection shift or apply color effect to image
+                mainImage.style.filter = `hue-rotate(${color.hue}deg) brightness(${color.brightness})`;
+                
+                // Update active thumbnail borders
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                const matchingThumbnail = document.getElementById(`thumb-${index}`);
+                if (matchingThumbnail) matchingThumbnail.classList.add('active');
+            });
+            colorsContainer.appendChild(btn);
+        });
+
+        // Highlights list rendering
+        const highlightsContainer = document.getElementById('highlightsList');
+        highlightsContainer.innerHTML = '';
+        product.highlights.forEach(highlight => {
+            const li = document.createElement('li');
+            li.style.marginBottom = '10px';
+            li.innerHTML = `<i class="fas fa-check-circle" style="color: #4CAF50; margin-right: 10px;"></i> ${highlight}`;
+            highlightsContainer.appendChild(li);
+        });
+
+        // Dynamic Thumbnails rendering (simulating colors/angles using filters)
+        const thumbnailList = document.getElementById('thumbnailList');
+        thumbnailList.innerHTML = '';
+        product.colors.forEach((color, index) => {
+            const img = document.createElement('img');
+            img.src = product.image;
+            img.id = `thumb-${index}`;
+            img.alt = `${color.name} variant`;
+            img.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+            img.style.filter = `hue-rotate(${color.hue}deg) brightness(${color.brightness})`;
+            img.addEventListener('click', function() {
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Apply filter to main image
+                mainImage.style.filter = `hue-rotate(${color.hue}deg) brightness(${color.brightness})`;
+                
+                // Highlight corresponding color button
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                const colorBtns = document.querySelectorAll('.color-btn');
+                if (colorBtns[index]) colorBtns[index].classList.add('active');
+            });
+            thumbnailList.appendChild(img);
+        });
+
+        // Sticky Buy Bar Logic
+        window.addEventListener('scroll', () => {
+            const stickyBuy = document.getElementById('stickyBuy');
+            // Only show sticky buy on desktop, mobile has the bottom nav
+            if(window.innerWidth > 768) {
+                if(window.scrollY > 400) {
+                    stickyBuy.classList.add('visible');
+                } else {
+                    stickyBuy.classList.remove('visible');
+                }
+            } else {
+                stickyBuy.classList.remove('visible');
+            }
+        });
+
+        // Mobile Nav Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                } else {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            });
+        }
+
+        // 3D Tilt & Shine Effect for Main Showcase Image
+        const imageContainer = document.getElementById('mainImageContainer');
+        if (imageContainer) {
+            let shine = imageContainer.querySelector('.card-shine');
+            if (!shine) {
+                shine = document.createElement('div');
+                shine.className = 'card-shine';
+                imageContainer.appendChild(shine);
+            }
+            
+            imageContainer.addEventListener('mouseenter', () => {
+                imageContainer.style.transition = 'none';
+            });
+
+            imageContainer.addEventListener('mousemove', e => {
+                const rect = imageContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xc = rect.width / 2;
+                const yc = rect.height / 2;
+                const dx = (x - xc) / xc;
+                const dy = (y - yc) / yc;
+                
+                // Max 6 degrees rotation for subtle premium feel
+                const tiltX = -dy * 6;
+                const tiltY = dx * 6;
+                
+                imageContainer.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.01, 1.01, 1.01)`;
+                
+                const px = (x / rect.width) * 100;
+                const py = (y / rect.height) * 100;
+                shine.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255, 255, 255, 0.12) 0%, transparent 65%)`;
+                shine.style.opacity = '1';
+            });
+            
+            imageContainer.addEventListener('mouseleave', () => {
+                imageContainer.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease';
+                imageContainer.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                shine.style.opacity = '0';
+            });
+        }
+    </script>
+</body>
+</html>
